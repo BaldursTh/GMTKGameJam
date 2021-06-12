@@ -17,6 +17,13 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.position);
+        if(Vector2.Distance(target.position, transform.position) > 1.5)
+        {
+            agent.enabled = true;
+            agent.SetDestination(target.position);
+        } else
+        {
+            agent.enabled = false;
+        }
     }
 }
