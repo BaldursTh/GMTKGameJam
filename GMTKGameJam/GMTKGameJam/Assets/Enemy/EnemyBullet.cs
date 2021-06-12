@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void OnCollisionEnter2D(Collision2D collision)
     {
