@@ -18,6 +18,7 @@ namespace Player
         void Update()
         {
             HandleInput();
+            
         }
 
 
@@ -65,7 +66,7 @@ namespace Player
             StartCoroutine(ShootCooldown());
             Vector2 direction = transform.GetMouseDirection();
             
-            GameObject _bulletPrefab = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            GameObject _bulletPrefab = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, 1), Quaternion.identity);
             _bulletPrefab.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
             
                 rb.AddForce(-(direction * playerKnockbackForce));
