@@ -12,14 +12,20 @@ namespace Player
         {
             rb = GetComponent<Rigidbody2D>();
             canShoot = true;
+            leftPivot = GameObject.FindGameObjectWithTag("LeftGun");
+            rightPivot = GameObject.FindGameObjectWithTag("RightGun");
+            downPivot = GameObject.FindGameObjectWithTag("ForwardGun");
+            gunAnimators[0] = leftPivot.GetComponent<Animator>();
+            gunAnimators[1] = rightPivot.GetComponent<Animator>();
+            gunAnimators[2] = downPivot.GetComponent<Animator>();
+
         }
-
-
         void Update()
         {
             HandleInput();
             
         }
+        
 
 
         #endregion
@@ -29,6 +35,10 @@ namespace Player
         public PlayerData data;
         Rigidbody2D rb;
         bool canShoot;
+        GameObject leftPivot;
+        GameObject rightPivot;
+        GameObject downPivot;
+        Animator[] gunAnimators = new Animator[3];
 
 
         #endregion
@@ -47,6 +57,14 @@ namespace Player
             {
                 CheckShoot();
             }
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                GrappleHook();
+            }
+        }
+        void GrappleHook()
+        {
+
         }
 
 
@@ -65,8 +83,9 @@ namespace Player
         {
             StartCoroutine(ShootCooldown());
             Vector2 direction = transform.GetMouseDirection();
+            float angle = transform.GetMouseAngle();
             
-            GameObject _bulletPrefab = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, 1), Quaternion.identity);
+            GameObject _bulletPrefab = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, 1), Quaternion.AngleAxis(angle+180, Vector3.forward));
             _bulletPrefab.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
             
                 rb.AddForce(-(direction * playerKnockbackForce));
@@ -80,15 +99,27 @@ namespace Player
 
         IEnumerator ShootCooldown()
         {
+            foreach (Animator anim in gunAnimators)
+            {
+                anim.SetBool("isShooting", true);
+
+            }
             canShoot = false;
             yield return new WaitForSeconds(shootCooldown);
             canShoot = true;
+            foreach (Animator anim in gunAnimators)
+            {
+                anim.SetBool("isShooting", false);
+            }
         }
 
 
         #endregion
 
+        #region CollisionDetection
+        
 
+        #endregion
 
     }
 }

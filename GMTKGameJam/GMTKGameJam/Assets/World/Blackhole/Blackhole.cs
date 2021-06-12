@@ -13,7 +13,7 @@ public class Blackhole : MonoBehaviour
     public void Start()
     {
         InvokeRepeating("AddForceToEverything", 0, 0.5f);
-        layerMask = LayerMask.GetMask("Enemy", "Player", "MovingBackground");
+        layerMask = LayerMask.GetMask("Enemy", "Player", "MovingObjects");
     }
     public void FixedUpdate()
     {
