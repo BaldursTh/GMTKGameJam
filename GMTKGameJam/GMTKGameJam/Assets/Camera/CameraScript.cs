@@ -6,9 +6,17 @@ public class CameraScript : MonoBehaviour
 {
     public GameObject player;
 
-   
+   float posX;
+       float  posY;
+    Vector2 position;
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);   
+        position = player.transform.position;
+        posX = position.x;
+        posY = position.y;
+
+        posX = Mathf.Round(posX / 0.0625f) * 0.0625f;
+        posY = Mathf.Round(posY / 0.0625f) * 0.0625f;
+        transform.position = new Vector3(posX, posY, -10); 
     }
 }

@@ -18,6 +18,7 @@ namespace Player
         void Update()
         {
             HandleInput();
+            
         }
 
 
@@ -36,6 +37,7 @@ namespace Player
         public float playerKnockbackForce => data.playerKnockbackForce;
         public float bulletSpeed => data.bulletSpeed;
         public float shootCooldown => data.shootCooldown;
+        public float speedCap => data.speedCap;
         #endregion
 
         #region Methods
@@ -64,9 +66,15 @@ namespace Player
             StartCoroutine(ShootCooldown());
             Vector2 direction = transform.GetMouseDirection();
             
-            GameObject _bulletPrefab = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            GameObject _bulletPrefab = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, 1), Quaternion.identity);
             _bulletPrefab.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
-            rb.AddForce(-(direction * playerKnockbackForce));
+            
+                rb.AddForce(-(direction * playerKnockbackForce));
+            if (rb.velocity.magnitude > speedCap)
+            {
+                rb.velocity = rb.velocity.normalized * speedCap;
+            }
+            Destroy(_bulletPrefab, 10);
 
         }
 
