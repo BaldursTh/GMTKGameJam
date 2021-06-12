@@ -21,7 +21,7 @@ public static class ExtensionMethods
     }
     public static Vector2 GetDirection(this Transform transform, Vector2 otherPoisition)
     {
-        Vector2 direction = (otherPoisition - (new Vector2(transform.position.x, transform.position.y)));
+        Vector2 direction = (otherPoisition - (new Vector2(transform.position.x, transform.position.y))).normalized;
             return direction;
     }
 

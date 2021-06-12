@@ -36,6 +36,7 @@ namespace Player
         public float playerKnockbackForce => data.playerKnockbackForce;
         public float bulletSpeed => data.bulletSpeed;
         public float shootCooldown => data.shootCooldown;
+        public float speedCap => data.speedCap;
         #endregion
 
         #region Methods
@@ -66,7 +67,13 @@ namespace Player
             
             GameObject _bulletPrefab = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             _bulletPrefab.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
-            rb.AddForce(-(direction * playerKnockbackForce));
+            
+                rb.AddForce(-(direction * playerKnockbackForce));
+            if (rb.velocity.magnitude > speedCap)
+            {
+                rb.velocity = rb.velocity.normalized * speedCap;
+            }
+            Destroy(_bulletPrefab, 10);
 
         }
 
