@@ -62,12 +62,13 @@ namespace Player
                 GrappleHook();
             }
         }
+
+        #endregion
+        #region GrappleHook 
         void GrappleHook()
         {
 
         }
-
-
         #endregion
 
         #region Shooting

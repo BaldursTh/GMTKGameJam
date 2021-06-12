@@ -15,5 +15,5 @@ MonoBehaviour:
   playerKnockbackForce: 200
   bulletSpeed: 1000
   bulletDamage: 10
-  shootCooldown: 0.2
+  shootCooldown: 0.3
   speedCap: 8
