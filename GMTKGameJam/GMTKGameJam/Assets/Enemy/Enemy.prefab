@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8504644792121294591}
+  - component: {fileID: -969972153365614374}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -31,6 +32,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-969972153365614374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8443958246861847770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db41c13a8a45e04a8f1c8c6b11e473c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 2aca49c11684092418500431e57770db, type: 2}
+  player: {fileID: 0}
+  playerTransform: {fileID: 0}
+  enemyBullet: {fileID: 0}
+  shootPoint: {fileID: 0}
 --- !u!1 &9067376492877885805
 GameObject:
   m_ObjectHideFlags: 0

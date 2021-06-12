@@ -11,6 +11,7 @@ namespace Enemy
         public float cooldown;
         public float speed;
         public float health;
+        [Range(50f, 100f)] public float bulletSpeed;
     }
 
 }
