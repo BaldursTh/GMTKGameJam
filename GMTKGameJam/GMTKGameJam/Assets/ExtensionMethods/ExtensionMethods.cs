@@ -19,5 +19,10 @@ public static class ExtensionMethods
         float mouseAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         return mouseAngle;
     }
+    public static Vector2 GetDirection(this Transform transform, Vector2 otherPoisition)
+    {
+        Vector2 direction = (otherPoisition - (new Vector2(transform.position.x, transform.position.y)));
+            return direction;
+    }
 
 }
