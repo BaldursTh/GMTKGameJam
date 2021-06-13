@@ -163,7 +163,7 @@ namespace Player
         }
         IEnumerator Stunned()
         {
-           
+            rb.velocity = rb.velocity / 2;
             anim.isStunned = true;
             canShoot = false;
             canGrapple = false;

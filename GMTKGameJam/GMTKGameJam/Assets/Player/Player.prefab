@@ -79,8 +79,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 4.6707125
+  m_UseAutoMass: 0
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2395571425474790469, guid: cb902ddac7a34c041bfaee976be242cc, type: 3}
   data: {fileID: 11400000, guid: 1043efab155d62f41824210e1826e652, type: 2}
   grapplePrefab: {fileID: 5819030859190263700, guid: 4c0a0c6e1da67504aa316adcba2757d5, type: 3}
-  StunDuration: 3000
+  StunDuration: 2000
   StunIncrease: 1000
   graphics: {fileID: 7278261310755043544}
   anim: {fileID: 0}

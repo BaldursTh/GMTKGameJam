@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7238181260244237471}
   - component: {fileID: 7218704763389352404}
   - component: {fileID: 2063512561168210501}
-  - component: {fileID: 3681869134809369926}
+  - component: {fileID: 3807989643078751232}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: EnemyBullet
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3dc80fa88e8ed59439309a55ad5bfaa8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!95 &3681869134809369926
+--- !u!95 &3807989643078751232
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ Animator:
   m_GameObject: {fileID: 1909513764743717302}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b0e6216f9c2a087419f86f4becd27a2f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 934c61164a4730d4ab055350f5c5ac58, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

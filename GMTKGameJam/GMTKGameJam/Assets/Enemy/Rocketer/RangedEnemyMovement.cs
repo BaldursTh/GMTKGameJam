@@ -18,6 +18,7 @@ public class RangedEnemyMovement : MonoBehaviour
     public float arrowTravelSpeed;
     float impact;
     public float forceNeededToDie;
+    public GameObject shootPos;
 
     float blockDetectionRange;
 
@@ -66,16 +67,19 @@ public class RangedEnemyMovement : MonoBehaviour
     IEnumerator RangedAttack()
     {
         isShooting = true;
-        anim.SetBool("isShooting", true);
+        anim.SetTrigger("Shoot");
         rb.velocity = Vector2.zero;
+        
 
-        yield return new WaitForSeconds(pullTime);
+        
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        GameObject arrowClone = Instantiate(arrow, transform.position, Quaternion.Euler(0, 0, 0));
+        GameObject arrowClone = Instantiate(arrow, shootPos.transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
         arrowClone.GetComponent<Rigidbody2D>().velocity = direction.normalized * -arrowTravelSpeed;
+        yield return new WaitForSeconds(reloadTime);
+        anim.ResetTrigger("Shoot");
         Destroy(arrowClone, 5f);
         isShooting = false;
-        anim.SetBool("isShooting", false);
+        
 
     }
 
@@ -112,6 +116,12 @@ public class RangedEnemyMovement : MonoBehaviour
         else { checkAngle = -1111; }
         anim.SetFloat("Angle", angle);
         anim.SetFloat("CheckAngle", checkAngle);
+    }
+    public GameObject explosionEffect;
+    private void OnDestroy()
+    {
+        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        explosion.transform.localScale = explosion.transform.localScale / 2;
     }
 
 }
