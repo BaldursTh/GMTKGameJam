@@ -9,6 +9,7 @@ public class Blackhole : MonoBehaviour
     public float blackHoleRadiusGrowth;
     public float suctionRadiusGrowth;
 
+    public CameraScript Camera;
     public float suctionForce;
     public List<Rigidbody2D> objectRb;
     LayerMask layerMask;
@@ -53,7 +54,10 @@ public class Blackhole : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if(collision.gameObject.tag == "Player")
+        {
+            Camera.Kill();
+        }
         Destroy(collision.gameObject);
     }
 }
