@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/CameraPan.unity
+    guid: 77a56a0f55c79704790ca1278246a52d
+  - enabled: 0
+    path: Assets/Scenes/Death.unity
+    guid: d93df629be3455a4fb877d95038109a1
   m_configObjects: {}
