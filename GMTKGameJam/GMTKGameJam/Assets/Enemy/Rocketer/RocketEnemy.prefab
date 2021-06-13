@@ -115,6 +115,7 @@ MonoBehaviour:
   shootKnockback: 0
   camShakemag: 1
   camShakeDur: 0.1
+  distanceUntillFollow: 905.42
   anim: {fileID: 4379965313859524443}
   explosionEffect: {fileID: 6731085654109687187, guid: 32b93ad49403fbc429f99d2130295273, type: 3}
 --- !u!50 &4379965313859524444

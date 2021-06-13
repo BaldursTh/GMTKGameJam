@@ -5,7 +5,7 @@ using Player;
 public class RangedEnemyMovement : MonoBehaviour
 {
     Rigidbody2D rb;
-   GameObject player;
+    GameObject player;
     public float distanceFromPlayer;
     public float moveSpeed;
     public float moveSpeedWhenReloading;
@@ -27,6 +27,8 @@ public class RangedEnemyMovement : MonoBehaviour
     public float camShakemag;
     public float camShakeDur;
 
+    public float distanceUntillFollow;
+
 
 
     void Awake()
@@ -45,8 +47,8 @@ public class RangedEnemyMovement : MonoBehaviour
         {
             direction = (transform.position - player.transform.position);
         }
-       
-       
+
+
         hit = Physics2D.Raycast(transform.position, direction, blockDetectionRange);
         Animations();
         if (hit)
@@ -57,14 +59,24 @@ public class RangedEnemyMovement : MonoBehaviour
             }
         }
 
+        if (Vector3.Distance(player.transform.position, transform.position) < distanceUntillFollow)
+        {
+            FollowPlayer();
+        }
 
+
+
+    }
+
+    void FollowPlayer()
+    {
         if (direction.magnitude < distanceFromPlayer && isShooting == false)
         {
             if (!player.GetComponent<PlayerScript>().anim.isStunned)
             {
                 StartCoroutine(RangedAttack());
             }
-           
+
 
 
 
@@ -83,9 +95,9 @@ public class RangedEnemyMovement : MonoBehaviour
         isShooting = true;
         anim.SetTrigger("Shoot");
         rb.velocity = Vector2.zero;
-        
 
-        
+
+
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         GameObject arrowClone = Instantiate(arrow, shootPos.transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
         arrowClone.GetComponent<Rigidbody2D>().velocity = direction.normalized * -arrowTravelSpeed;
@@ -94,7 +106,7 @@ public class RangedEnemyMovement : MonoBehaviour
         anim.ResetTrigger("Shoot");
         Destroy(arrowClone, 5f);
         isShooting = false;
-        
+
 
     }
 
@@ -107,14 +119,14 @@ public class RangedEnemyMovement : MonoBehaviour
 
         }
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         impact = collision.relativeVelocity.sqrMagnitude;
 
         if (impact > forceNeededToDie)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
 
@@ -127,8 +139,8 @@ public class RangedEnemyMovement : MonoBehaviour
         {
             Vector2 direction = (player.transform.position - transform.position).normalized;
         }
-       
-        angle  = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         if (angle > 135) { checkAngle = -(360 - angle); }
         else if (angle < -135) { checkAngle = (360 + angle); }
