@@ -29,6 +29,7 @@ public class GrappleHook : MonoBehaviour
             direction = (player.transform.position - transform.position).normalized;
 
             rb = player.transform.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero;
             rb.AddForce(direction * -grappleForce);
             Destroy(gameObject);
         }

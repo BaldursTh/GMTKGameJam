@@ -7,6 +7,7 @@ public class Blackhole : MonoBehaviour
 {
     public float blackHoleRadius;
     public float blackHoleRadiusGrowth;
+    public float suctionRadiusGrowth;
 
     public float suctionForce;
     public List<Rigidbody2D> objectRb;
@@ -19,7 +20,16 @@ public class Blackhole : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        blackHoleRadius += blackHoleRadiusGrowth;
+        blackHoleRadius += suctionRadiusGrowth;
+        
+
+        transform.localScale = new Vector2(transform.localScale.x + blackHoleRadiusGrowth, transform.localScale.y + blackHoleRadiusGrowth);
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+     
+     Gizmos.DrawWireSphere(transform.position, blackHoleRadius);
     }
 
     void AddForceToEverything()

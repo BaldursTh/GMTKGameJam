@@ -106,7 +106,7 @@ public class RangedEnemyMovement : MonoBehaviour
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
         angle  = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        print(angle);
+
         if (angle > 135) { checkAngle = -(360 - angle); }
         else if (angle < -135) { checkAngle = (360 + angle); }
         else { checkAngle = -1111; }

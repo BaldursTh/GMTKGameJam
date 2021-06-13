@@ -64,4 +64,9 @@ public class ExplosiveBarrel : MonoBehaviour
             Explode();
         }
     }
+    public GameObject explosionEffect;
+    private void OnDestroy()
+    {
+        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+    }
 }

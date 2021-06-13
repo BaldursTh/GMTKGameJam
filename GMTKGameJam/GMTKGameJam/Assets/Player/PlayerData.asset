@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b197708519467bb4a8efde778214297f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  playerKnockbackForce: 3000
+  playerKnockbackForce: 800
   bulletSpeed: 1000
   bulletDamage: 10
   shootCooldown: 0.3

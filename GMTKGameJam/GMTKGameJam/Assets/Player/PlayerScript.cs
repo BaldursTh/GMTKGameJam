@@ -151,6 +151,7 @@ namespace Player
                 if (!anim.isStunned)
                 {
                     Stun();
+                    Destroy(collision.gameObject);
                 }
                 
 
@@ -165,17 +166,20 @@ namespace Player
            
             anim.isStunned = true;
             canShoot = false;
+            canGrapple = false;
             for (float i = 0; i < StunDuration; i += StunIncrease*Time.deltaTime)
             {
                 if (anim.angle > 180)
                 {
                     anim.angle = -180;
                 }
+                canGrapple = false;
                 canShoot = false;
                 anim.angle += StunIncrease * Time.deltaTime;
                 
                 yield return null;
             }
+            canGrapple = true;
             canShoot = true;
             anim.isStunned = false; 
         }

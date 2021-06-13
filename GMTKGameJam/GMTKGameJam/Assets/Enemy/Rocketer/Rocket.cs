@@ -39,7 +39,7 @@ public class Rocket : MonoBehaviour
                 collider.transform.GetComponent<BasicWall>().TakeDamage();
             }
         }
-        Destroy(gameObject);
+        
 
 
 
@@ -50,10 +50,15 @@ public class Rocket : MonoBehaviour
         if (collision.CompareTag("Objects"))
         {
 
-            Explode();
+            Destroy(gameObject);
         }
     }
     float impact;
+    public GameObject explosionEffect;
+    private void OnDestroy()
+    {
+        Explode();
+        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+    }
 
-    
 }
