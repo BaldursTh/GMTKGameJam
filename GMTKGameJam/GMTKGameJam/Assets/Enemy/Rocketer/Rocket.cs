@@ -37,11 +37,9 @@ public class Rocket : MonoBehaviour
             Vector2 direction = transform.GetDirection(collider.transform.position);
             Rigidbody2D rb = collider.transform.GetComponent<Rigidbody2D>();
             rb.AddForce(direction * explosionForce);
-            if (collider.gameObject.layer == 9)
-            {
-                collider.transform.GetComponent<BasicWall>().TakeDamage();
-            }
+            
         }
+
         
 
 
@@ -52,7 +50,7 @@ public class Rocket : MonoBehaviour
 
         if (collision.CompareTag("Objects"))
         {
-
+            GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
@@ -62,7 +60,7 @@ public class Rocket : MonoBehaviour
     {
         camShake.Shake(camShakeDur, camShakemag);
         Explode();
-        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        
     }
 
 }

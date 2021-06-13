@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7206574351213517341}
   - component: {fileID: 6468159361849337122}
   m_Layer: 9
-  m_Name: Cargo 2
-  m_TagString: Untagged
+  m_Name: Crate
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

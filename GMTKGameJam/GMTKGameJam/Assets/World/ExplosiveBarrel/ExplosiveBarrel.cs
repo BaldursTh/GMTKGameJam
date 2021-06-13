@@ -15,6 +15,7 @@ public class ExplosiveBarrel : MonoBehaviour
     public float camShakemag;
     public float camShakeDur;
     public Collider2D[] objects;
+   
     public void Start()
     {
         camShake = Camera.main.GetComponent<CameraShake>();
@@ -31,6 +32,7 @@ public class ExplosiveBarrel : MonoBehaviour
     void Explode()
     {
         camShake.Shake(camShakeDur, camShakemag);
+        
         objects = Physics2D.OverlapCircleAll(transform.position, explosionRadius, layerMask);
         if (objectRb != null)
         {
@@ -48,6 +50,7 @@ public class ExplosiveBarrel : MonoBehaviour
                 Destroy(collider.gameObject);
             }
         }
+        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
 
 
@@ -70,12 +73,10 @@ public class ExplosiveBarrel : MonoBehaviour
 
         if (impact > forceNeededToExplode)
         {
+           
             Explode();
         }
     }
     public GameObject explosionEffect;
-    private void OnDestroy()
-    {
-        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-    }
+    
 }

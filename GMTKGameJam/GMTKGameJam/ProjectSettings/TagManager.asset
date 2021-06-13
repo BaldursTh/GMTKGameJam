@@ -13,6 +13,13 @@ TagManager:
   - Enemies
   - Ready
   - Pause
+  - Menu
+  - Restart
+  - Gun
+  - BlackHole
+  - Timer
+  - EscapePod
+  - GameManager
   layers:
   - Default
   - TransparentFX

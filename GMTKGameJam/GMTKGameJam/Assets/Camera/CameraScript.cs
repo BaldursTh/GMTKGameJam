@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class CameraScript : MonoBehaviour
 {
     GameObject player;
+    GameObject pod;
+    GameManager gm;
 
 
     bool isDead = false;
@@ -16,6 +18,8 @@ public class CameraScript : MonoBehaviour
     Vector2 position;
     private void Awake()
     {
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>(); ;
+        pod = GameObject.FindGameObjectWithTag("EscapePod");
         player = GameObject.FindGameObjectWithTag("Player");
     }
     void Update()
@@ -42,13 +46,35 @@ public class CameraScript : MonoBehaviour
         
         isDead = true;
     }
+    public void Finish()
+    {
+        gm.Finish();
+        StartCoroutine(Fin());
+    }
 
     IEnumerator Death()
     {
-        print("yesy)");
+        
         showDeathScreen++;
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
+    bool isFin = true;
+    IEnumerator Fin()
+    {
+        while(isFin)
+        {
+            position = pod.transform.position;
+            posX = position.x;
+            posY = position.y;
+
+            posX = Mathf.Round(posX / 0.0625f) * 0.0625f;
+            posY = Mathf.Round(posY / 0.0625f) * 0.0625f;
+            transform.position = new Vector3(posX, posY, -10);
+            yield return null;
+
+        }
+       
     }
 
 

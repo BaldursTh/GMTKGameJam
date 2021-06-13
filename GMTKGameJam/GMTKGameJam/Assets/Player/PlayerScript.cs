@@ -46,6 +46,7 @@ namespace Player
         public CameraShake camShake;
         public float camShakemag;
         public float camShakeDur;
+        public AudioSource ads;
 
 
         #endregion
@@ -113,6 +114,7 @@ namespace Player
         }
         void Shoot()
         {
+            ads.Play();
             camShake.Shake(camShakeDur, camShakemag);
             StartCoroutine(ShootCooldown());
             Vector2 direction = transform.GetMouseDirection();

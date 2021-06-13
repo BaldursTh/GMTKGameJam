@@ -26,7 +26,7 @@ public class RangedEnemyMovement : MonoBehaviour
     CameraShake camShake;
     public float camShakemag;
     public float camShakeDur;
-
+    public AudioSource ads;
     public float distanceUntillFollow;
 
 
@@ -92,6 +92,7 @@ public class RangedEnemyMovement : MonoBehaviour
     }
     IEnumerator RangedAttack()
     {
+        ads.Play();
         isShooting = true;
         anim.SetTrigger("Shoot");
         rb.velocity = Vector2.zero;
@@ -115,6 +116,8 @@ public class RangedEnemyMovement : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
+            GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            explosion.transform.localScale = explosion.transform.localScale / 2;
             Destroy(collision.gameObject);
             Destroy(gameObject);
 
@@ -127,6 +130,8 @@ public class RangedEnemyMovement : MonoBehaviour
 
         if (impact > forceNeededToDie)
         {
+            GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            explosion.transform.localScale = explosion.transform.localScale / 2;
             Destroy(gameObject); 
         }
     }
@@ -152,9 +157,9 @@ public class RangedEnemyMovement : MonoBehaviour
     public GameObject explosionEffect;
     private void OnDestroy()
     {
+        
         camShake.Shake(camShakeDur, camShakemag);
-        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        explosion.transform.localScale = explosion.transform.localScale / 2;
+        
     }
 
 }
