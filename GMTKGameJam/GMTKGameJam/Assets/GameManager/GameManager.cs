@@ -29,6 +29,13 @@ public class GameManager : MonoBehaviour
                 
                 Time.timeScale = 1f;
             }
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                gameState = GameState.Play;
+
+                Time.timeScale = 1f;
+
+            }
         }
         else 
         {

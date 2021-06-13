@@ -159,4 +159,7 @@ MonoBehaviour:
   explosionForce: 1000
   objectRb: []
   objects: []
+  camShake: {fileID: 0}
+  camShakemag: 0.1
+  camShakeDur: 0.1
   explosionEffect: {fileID: 6731085654109687187, guid: 32b93ad49403fbc429f99d2130295273, type: 3}

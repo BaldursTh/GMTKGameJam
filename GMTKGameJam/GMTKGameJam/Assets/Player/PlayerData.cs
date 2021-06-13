@@ -14,6 +14,7 @@ namespace Player
         public float speedCap;
         public float grappleSpeed;
         public float grappleDistance;
+        public float grappleCooldown;
 
     }
 }

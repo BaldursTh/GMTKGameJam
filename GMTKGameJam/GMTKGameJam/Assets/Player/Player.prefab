@@ -43,8 +43,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7278261310630630539}
   - component: {fileID: 7278261310630630538}
-  - component: {fileID: 7278261310630630541}
   - component: {fileID: 7278261310630630540}
+  - component: {fileID: 5423841346716424900}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -89,22 +89,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &7278261310630630541
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7278261310630630543}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.06285477, y: -0.0035135746}
-  serializedVersion: 2
-  m_Radius: 1.219317
 --- !u!114 &7278261310630630540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,10 +104,50 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2395571425474790469, guid: cb902ddac7a34c041bfaee976be242cc, type: 3}
   data: {fileID: 11400000, guid: 1043efab155d62f41824210e1826e652, type: 2}
   grapplePrefab: {fileID: 5819030859190263700, guid: 4c0a0c6e1da67504aa316adcba2757d5, type: 3}
+  camShake: {fileID: 0}
+  camShakemag: 0.2
+  camShakeDur: 0.1
   StunDuration: 2000
   StunIncrease: 1000
   graphics: {fileID: 7278261310755043544}
   anim: {fileID: 0}
+--- !u!60 &5423841346716424900
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7278261310630630543}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.71834564, y: 1.6373491}
+      - {x: 0.37477112, y: 1.8176823}
+      - {x: -0.053009033, y: 1.947362}
+      - {x: -0.61582184, y: 1.7020054}
+      - {x: -0.7862053, y: 1.3746252}
+      - {x: -0.7012091, y: 1.0017755}
+      - {x: -0.5635071, y: 0.017043114}
+      - {x: -0.21301407, y: -0.65002334}
+      - {x: 0.019947052, y: -0.76189804}
+      - {x: 0.28115618, y: -0.6727369}
+      - {x: 1.0351906, y: -0.30097485}
+      - {x: 1.0419111, y: 0.4566545}
 --- !u!1 &7278261310688228033
 GameObject:
   m_ObjectHideFlags: 0

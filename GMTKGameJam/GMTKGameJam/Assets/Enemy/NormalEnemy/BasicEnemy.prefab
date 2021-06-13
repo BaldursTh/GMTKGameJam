@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3368363286685188143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalPosition: {x: 0, y: -0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4144848775651897062}
@@ -122,10 +122,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4144848775651897062}
   - component: {fileID: 4144848775651897063}
-  - component: {fileID: 4144848775651897060}
   - component: {fileID: 4144848775651897059}
   - component: {fileID: 4144848775651897058}
   - component: {fileID: 4144848775651897061}
+  - component: {fileID: 173018540}
   m_Layer: 7
   m_Name: BasicEnemy
   m_TagString: Enemies
@@ -200,22 +200,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4144848775651897060
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4144848775651897056}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &4144848775651897059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,19 +212,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3215ba9727d852842aba6ca52e889c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   distanceFromPlayer: 20
   moveSpeed: 5
-  moveSpeedWhenReloading: 2
-  rangeGap: 3
+  moveSpeedWhenReloading: 0
+  rangeGap: 0
   reloadTime: 0.2
   arrow: {fileID: 1909513764743717302, guid: b72d36aa1f3f2e940a47f282e97e5c76, type: 3}
   direction: {x: 0, y: 0}
-  pullTime: 0.2
+  pullTime: 0
   isShooting: 0
   arrowTravelSpeed: 40
   forceNeededToDie: 200
   shootPos: {fileID: 2296963155229329964}
+  shootKnockback: 0
+  camShakemag: 0
+  camShakeDur: 0
   anim: {fileID: 4144848775651897061}
   explosionEffect: {fileID: 6731085654109687187, guid: 32b93ad49403fbc429f99d2130295273, type: 3}
 --- !u!50 &4144848775651897058
@@ -283,3 +269,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!60 &173018540
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4144848775651897056}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.75, y: -1.3125}
+      - {x: 0.8125, y: -1.0625}
+      - {x: 1.4375, y: 0.4375}
+      - {x: 1.4375, y: 1.0625}
+      - {x: 0.875, y: 1.0625}
+      - {x: 0.3125, y: 1.875}
+      - {x: -0.125, y: 1.875}
+      - {x: -1.25, y: 1.125}
+      - {x: -1.5, y: 1.0625}
+      - {x: -1.5, y: 0.625}
+      - {x: -1.1875, y: -0.0625}
+      - {x: -0.875, y: -1.125}
+      - {x: -0.625, y: -1.3125}
+      - {x: -0.25, y: -1.3125}
+      - {x: -0.0625, y: -1}
+      - {x: 0.0625, y: -1.25}
+      - {x: 0.25, y: -1.3125}

@@ -213,7 +213,7 @@ MonoBehaviour:
   blackHoleRadius: 20
   blackHoleRadiusGrowth: 0.4
   suctionRadiusGrowth: 0.8
-  suctionForce: 800
+  suctionForce: 400
   objectRb: []
   objects: []
 --- !u!58 &7733969903105919919

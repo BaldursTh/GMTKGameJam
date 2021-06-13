@@ -5,7 +5,7 @@ using Player;
 public class RangedEnemyMovement : MonoBehaviour
 {
     Rigidbody2D rb;
-    public GameObject player;
+   GameObject player;
     public float distanceFromPlayer;
     public float moveSpeed;
     public float moveSpeedWhenReloading;
@@ -19,11 +19,20 @@ public class RangedEnemyMovement : MonoBehaviour
     float impact;
     public float forceNeededToDie;
     public GameObject shootPos;
+    public float shootKnockback;
 
     float blockDetectionRange;
 
+    CameraShake camShake;
+    public float camShakemag;
+    public float camShakeDur;
+
+
+
     void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        camShake = Camera.main.GetComponent<CameraShake>();
         rb = GetComponent<Rigidbody2D>();
         isShooting = false;
         anim = GetComponent<Animator>();
@@ -32,7 +41,12 @@ public class RangedEnemyMovement : MonoBehaviour
     RaycastHit2D hit;
     void Update()
     {
-        direction = (transform.position - player.transform.position);
+        if (player != null)
+        {
+            direction = (transform.position - player.transform.position);
+        }
+       
+       
         hit = Physics2D.Raycast(transform.position, direction, blockDetectionRange);
         Animations();
         if (hit)
@@ -75,6 +89,7 @@ public class RangedEnemyMovement : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         GameObject arrowClone = Instantiate(arrow, shootPos.transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
         arrowClone.GetComponent<Rigidbody2D>().velocity = direction.normalized * -arrowTravelSpeed;
+        rb.velocity = direction.normalized * -shootKnockback;
         yield return new WaitForSeconds(reloadTime);
         anim.ResetTrigger("Shoot");
         Destroy(arrowClone, 5f);
@@ -108,7 +123,11 @@ public class RangedEnemyMovement : MonoBehaviour
     float checkAngle;
     public void Animations()
     {
-        Vector2 direction = (player.transform.position - transform.position).normalized;
+        if (player != null)
+        {
+            Vector2 direction = (player.transform.position - transform.position).normalized;
+        }
+       
         angle  = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         if (angle > 135) { checkAngle = -(360 - angle); }
@@ -120,6 +139,7 @@ public class RangedEnemyMovement : MonoBehaviour
     public GameObject explosionEffect;
     private void OnDestroy()
     {
+        camShake.Shake(camShakeDur, camShakemag);
         GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
         explosion.transform.localScale = explosion.transform.localScale / 2;
     }

@@ -193,11 +193,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9936aa88a6882f488c8ccde3c6c17e0, type: 3}
---- !u!1 &1326853970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7733969903105919915, guid: c9936aa88a6882f488c8ccde3c6c17e0, type: 3}
-  m_PrefabInstance: {fileID: 119157216}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1330554360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270,10 +265,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 70359617}
-    - target: {fileID: 1853298429005510970, guid: ec99878291b2c9c44a4035bc56c9a464, type: 3}
-      propertyPath: blackhole
-      value: 
-      objectReference: {fileID: 1326853970}
     - target: {fileID: 1853298429005511108, guid: ec99878291b2c9c44a4035bc56c9a464, type: 3}
       propertyPath: m_RootOrder
       value: 0

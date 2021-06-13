@@ -9,27 +9,29 @@ public class Blackhole : MonoBehaviour
     public float blackHoleRadiusGrowth;
     public float suctionRadiusGrowth;
 
+    CameraScript Cam;
     public float suctionForce;
     public List<Rigidbody2D> objectRb;
     LayerMask layerMask;
     public Collider2D[] objects;
     public void Start()
     {
+        Cam = Camera.main.GetComponent<CameraScript>();
         InvokeRepeating("AddForceToEverything", 0, 0.5f);
         layerMask = LayerMask.GetMask("Enemy", "Player", "MovingObjects");
     }
     public void FixedUpdate()
     {
         blackHoleRadius += suctionRadiusGrowth;
-        
+
 
         transform.localScale = new Vector2(transform.localScale.x + blackHoleRadiusGrowth, transform.localScale.y + blackHoleRadiusGrowth);
     }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-     
-     Gizmos.DrawWireSphere(transform.position, blackHoleRadius);
+
+        Gizmos.DrawWireSphere(transform.position, blackHoleRadius);
     }
 
     void AddForceToEverything()
@@ -39,7 +41,7 @@ public class Blackhole : MonoBehaviour
         {
             objectRb.Clear();
         }
-        
+
         foreach (Collider2D collider in objects)
         {
             objectRb.Add(collider.transform.GetComponent<Rigidbody2D>());
@@ -47,13 +49,16 @@ public class Blackhole : MonoBehaviour
             Rigidbody2D rb = collider.transform.GetComponent<Rigidbody2D>();
             rb.AddForce(-(direction * suctionForce));
         }
-        
+
 
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Player")
+        {
+            Cam.Kill();
+        }
         Destroy(collision.gameObject);
     }
 }

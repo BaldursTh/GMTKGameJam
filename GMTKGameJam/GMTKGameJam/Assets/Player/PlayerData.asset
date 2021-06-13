@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerKnockbackForce: 800
   bulletSpeed: 1000
-  bulletDamage: 10
+  bulletDamage: 0
   shootCooldown: 0.3
   speedCap: 16
   grappleSpeed: 60
   grappleDistance: 1
+  grappleCooldown: 1

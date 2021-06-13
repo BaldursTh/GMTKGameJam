@@ -19,6 +19,7 @@ namespace Player
             gunAnimators[1] = rightPivot.GetComponent<Animator>();
             gunAnimators[2] = downPivot.GetComponent<Animator>();
             anim = graphics.GetComponent<Animations>();
+            camShake = Camera.main.GetComponent<CameraShake>();
 
         }
         void Update()
@@ -42,17 +43,22 @@ namespace Player
         GameObject downPivot;
         Animator[] gunAnimators = new Animator[3];
         public GameObject grapplePrefab;
+        public CameraShake camShake;
+        public float camShakemag;
+        public float camShakeDur;
 
 
         #endregion
 
         #region Parameters
+
         public float playerKnockbackForce => data.playerKnockbackForce;
         public float bulletSpeed => data.bulletSpeed;
         public float shootCooldown => data.shootCooldown;
         public float speedCap => data.speedCap;
         public float grappleSpeed => data.grappleSpeed;
         public float grappleDistance => data.grappleDistance;
+        public float grappleCooldown => data.grappleCooldown;
         #endregion
 
         #region Methods
@@ -87,7 +93,7 @@ namespace Player
         IEnumerator GrappleCooldown()
         {
             canGrapple = false;
-            yield return new WaitForSeconds(shootCooldown);
+            yield return new WaitForSeconds(grappleCooldown);
             canGrapple = true;
         }
         
@@ -104,6 +110,7 @@ namespace Player
         }
         void Shoot()
         {
+            camShake.Shake(camShakeDur, camShakemag);
             StartCoroutine(ShootCooldown());
             Vector2 direction = transform.GetMouseDirection();
             float angle = transform.GetMouseAngle();
@@ -163,6 +170,7 @@ namespace Player
         }
         IEnumerator Stunned()
         {
+            camShake.Shake(camShakeDur, camShakemag);
             rb.velocity = rb.velocity / 2;
             anim.isStunned = true;
             canShoot = false;

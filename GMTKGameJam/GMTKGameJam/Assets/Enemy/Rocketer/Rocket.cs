@@ -13,15 +13,18 @@ public class Rocket : MonoBehaviour
     LayerMask layerMask;
 
     public Collider2D[] objects;
-    public void Start()
+    public void Awake()
     {
-
+        camShake = Camera.main.GetComponent<CameraShake>();
         layerMask = LayerMask.GetMask("Enemy", "Player", "MovingObjects");
     }
 
-
+    public CameraShake camShake;
+    public float camShakemag;
+    public float camShakeDur;
     void Explode()
     {
+        
         objects = Physics2D.OverlapCircleAll(transform.position, explosionRadius, layerMask);
         if (objectRb != null)
         {
@@ -57,6 +60,7 @@ public class Rocket : MonoBehaviour
     public GameObject explosionEffect;
     private void OnDestroy()
     {
+        camShake.Shake(camShakeDur, camShakemag);
         Explode();
         GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
     }

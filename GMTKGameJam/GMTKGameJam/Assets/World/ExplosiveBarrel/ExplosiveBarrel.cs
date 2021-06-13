@@ -11,17 +11,26 @@ public class ExplosiveBarrel : MonoBehaviour
     public float explosionForce;
     public List<Rigidbody2D> objectRb;
     LayerMask layerMask;
-    
+    public CameraShake camShake;
+    public float camShakemag;
+    public float camShakeDur;
     public Collider2D[] objects;
     public void Start()
     {
-
+        camShake = Camera.main.GetComponent<CameraShake>();
+        
         layerMask = LayerMask.GetMask("Enemy", "Player", "MovingObjects");
     }
-    
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
     void Explode()
     {
+        camShake.Shake(camShakeDur, camShakemag);
         objects = Physics2D.OverlapCircleAll(transform.position, explosionRadius, layerMask);
         if (objectRb != null)
         {
