@@ -216,17 +216,18 @@ MonoBehaviour:
   moveSpeed: 5
   moveSpeedWhenReloading: 0
   rangeGap: 0
-  reloadTime: 0.2
+  reloadTime: 0.1
   arrow: {fileID: 1909513764743717302, guid: b72d36aa1f3f2e940a47f282e97e5c76, type: 3}
   direction: {x: 0, y: 0}
-  pullTime: 0
+  pullTime: 1
   isShooting: 0
   arrowTravelSpeed: 40
   forceNeededToDie: 200
   shootPos: {fileID: 2296963155229329964}
   shootKnockback: 0
-  camShakemag: 0
-  camShakeDur: 0
+  camShakemag: 0.2
+  camShakeDur: 0.2
+  distanceUntillFollow: 60
   anim: {fileID: 4144848775651897061}
   explosionEffect: {fileID: 6731085654109687187, guid: 32b93ad49403fbc429f99d2130295273, type: 3}
 --- !u!50 &4144848775651897058

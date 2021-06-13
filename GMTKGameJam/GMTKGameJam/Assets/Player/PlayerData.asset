@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b197708519467bb4a8efde778214297f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  playerKnockbackForce: 800
-  bulletSpeed: 1000
+  playerKnockbackForce: 400
+  bulletSpeed: 5000
   bulletDamage: 0
   shootCooldown: 0.3
   speedCap: 16
-  grappleSpeed: 60
-  grappleDistance: 1
+  grappleSpeed: 240
+  grappleDistance: 0.4
   grappleCooldown: 1

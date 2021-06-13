@@ -11,6 +11,8 @@ TagManager:
   - Objects
   - EnemyBullet
   - Enemies
+  - Ready
+  - Pause
   layers:
   - Default
   - TransparentFX

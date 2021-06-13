@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 10
   forceNeededToExplode: 150
-  explosionForce: 1000
+  explosionForce: 200
   objectRb: []
   objects: []
   camShake: {fileID: 0}

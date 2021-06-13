@@ -9,13 +9,16 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     GameState gameState;
-    public delegate void ChangeState();
-    public event ChangeState OnPlay;
-    public event ChangeState OnPause;
+    GameObject pause;
+    GameObject[] ready;
     
     private void Awake()
     {
+
+        pause = GameObject.FindGameObjectWithTag("Pause");
+        ready = GameObject.FindGameObjectsWithTag("Ready");
         gameState = GameState.Ready;
+        pause.SetActive(false);
         Time.timeScale = 0;
 
     }
@@ -26,11 +29,18 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 gameState = GameState.Play;
-                
+                foreach(GameObject ready in ready)
+                {
+                    ready.SetActive(false);
+                }
                 Time.timeScale = 1f;
             }
             else if (Input.GetKeyDown(KeyCode.Mouse1))
             {
+                foreach (GameObject ready in ready)
+                {
+                    ready.SetActive(false);
+                }
                 gameState = GameState.Play;
 
                 Time.timeScale = 1f;
@@ -50,14 +60,14 @@ public class GameManager : MonoBehaviour
             if (gameState == GameState.Play)
             {
                 gameState = GameState.Pause;
-                
+                pause.SetActive(true);
                 Time.timeScale = 0;
 
             }
             else
             {
                 gameState = GameState.Play;
-                
+                pause.SetActive(false);
                 Time.timeScale = 1f;
             }           
         } 

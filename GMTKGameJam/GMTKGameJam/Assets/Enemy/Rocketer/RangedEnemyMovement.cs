@@ -27,6 +27,8 @@ public class RangedEnemyMovement : MonoBehaviour
     public float camShakemag;
     public float camShakeDur;
 
+    public float distanceUntillFollow;
+
 
 
     void Awake()
@@ -57,14 +59,24 @@ public class RangedEnemyMovement : MonoBehaviour
             }
         }
 
+        if (direction.magnitude < distanceUntillFollow)
+        {
+            FollowPlayer();
+        }
 
+
+        
+    }
+
+    void FollowPlayer()
+    {
         if (direction.magnitude < distanceFromPlayer && isShooting == false)
         {
             if (!player.GetComponent<PlayerScript>().anim.isStunned)
             {
                 StartCoroutine(RangedAttack());
             }
-           
+
 
 
 
@@ -87,6 +99,7 @@ public class RangedEnemyMovement : MonoBehaviour
 
         
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        yield return new WaitForSeconds(pullTime);
         GameObject arrowClone = Instantiate(arrow, shootPos.transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
         arrowClone.GetComponent<Rigidbody2D>().velocity = direction.normalized * -arrowTravelSpeed;
         rb.velocity = direction.normalized * -shootKnockback;
@@ -128,7 +141,7 @@ public class RangedEnemyMovement : MonoBehaviour
             Vector2 direction = (player.transform.position - transform.position).normalized;
         }
        
-        angle  = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle  = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
 
         if (angle > 135) { checkAngle = -(360 - angle); }
         else if (angle < -135) { checkAngle = (360 + angle); }

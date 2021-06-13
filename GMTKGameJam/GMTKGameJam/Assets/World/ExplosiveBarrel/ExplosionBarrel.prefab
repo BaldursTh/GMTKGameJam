@@ -99,11 +99,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 20
   forceNeededToExplode: 200
-  explosionForce: 4000
+  explosionForce: 1500
   objectRb: []
   camShake: {fileID: 0}
-  camShakemag: 0
-  camShakeDur: 0
+  camShakemag: 1
+  camShakeDur: 0.3
   objects: []
   explosionEffect: {fileID: 6731085654109687187, guid: 32b93ad49403fbc429f99d2130295273, type: 3}
 --- !u!50 &1923435196526094298

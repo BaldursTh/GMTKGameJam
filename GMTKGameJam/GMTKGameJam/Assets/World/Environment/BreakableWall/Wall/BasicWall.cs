@@ -26,7 +26,12 @@ public class BasicWall : MonoBehaviour
             rb.AddForce((collider.transform.GetComponent<Rigidbody2D>().velocity) * knockback);
             Destroy(collider.gameObject);
         }
-
+        if (collider.CompareTag("EnemyBullet"))
+        {
+            TakeDamage();
+            rb.AddForce((collider.transform.GetComponent<Rigidbody2D>().velocity) * knockback);
+            Destroy(collider.gameObject);
+        }
 
     }
     public void TakeDamage()

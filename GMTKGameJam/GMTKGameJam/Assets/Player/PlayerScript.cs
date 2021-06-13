@@ -64,13 +64,16 @@ namespace Player
         #region Methods
         void HandleInput()
         {
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (canShoot)
             {
-                CheckShoot();
-            }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                GrappleHook();
+                if (Input.GetKey(KeyCode.Mouse0))
+                {
+                    CheckShoot();
+                }
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    GrappleHook();
+                }
             }
         }
 
@@ -115,15 +118,16 @@ namespace Player
             Vector2 direction = transform.GetMouseDirection();
             float angle = transform.GetMouseAngle();
             
-            GameObject _bulletPrefab = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, 1), Quaternion.AngleAxis(angle+180, Vector3.forward));
-            _bulletPrefab.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
+                GameObject _bulletPrefab = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, 1), Quaternion.AngleAxis(angle + 180, Vector3.forward));
+                _bulletPrefab.GetComponent<Rigidbody2D>().AddForce(direction.normalized * bulletSpeed);
+
+                rb.AddForce(-(direction.normalized * playerKnockbackForce));
+                if (rb.velocity.magnitude > speedCap)
+                {
+                    rb.velocity = rb.velocity.normalized * speedCap;
+                }
+                Destroy(_bulletPrefab, 10);
             
-                rb.AddForce(-(direction * playerKnockbackForce));
-            if (rb.velocity.magnitude > speedCap)
-            {
-                rb.velocity = rb.velocity.normalized * speedCap;
-            }
-            Destroy(_bulletPrefab, 10);
 
         }
 

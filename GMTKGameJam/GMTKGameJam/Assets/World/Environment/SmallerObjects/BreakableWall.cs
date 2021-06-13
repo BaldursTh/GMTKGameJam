@@ -18,14 +18,15 @@ public class BreakableWall : MonoBehaviour
     {
         if (collider.CompareTag("Bullet"))
         {
-            health -= 1;
-            rb.AddForce((collider.transform.GetComponent<Rigidbody2D>().velocity) * knockback);
-            Destroy(collider.gameObject);
-            if (health <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }  
+            Destroy(collider);
+            Destroy(gameObject);
+           
+        }
+        if (collider.CompareTag("EnemyBullet"))
+        {
+            Destroy(collider);
+            Destroy(gameObject);
+        }
 
 
     }

@@ -48,7 +48,7 @@ public class CameraScript : MonoBehaviour
         print("yesy)");
         showDeathScreen++;
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("TestScene", LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
 

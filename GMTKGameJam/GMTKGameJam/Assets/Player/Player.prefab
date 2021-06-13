@@ -107,7 +107,7 @@ MonoBehaviour:
   camShake: {fileID: 0}
   camShakemag: 0.2
   camShakeDur: 0.1
-  StunDuration: 2000
+  StunDuration: 1000
   StunIncrease: 1000
   graphics: {fileID: 7278261310755043544}
   anim: {fileID: 0}

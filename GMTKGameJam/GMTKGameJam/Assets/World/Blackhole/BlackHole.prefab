@@ -211,9 +211,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackHoleRadius: 20
-  blackHoleRadiusGrowth: 0.4
-  suctionRadiusGrowth: 0.8
-  suctionForce: 400
+  blackHoleRadiusGrowth: 0.1
+  suctionRadiusGrowth: 0.2
+  suctionForce: 10
   objectRb: []
   objects: []
 --- !u!58 &7733969903105919919

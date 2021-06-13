@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  grappleForce: 2000
+  grappleForce: 1200
   line: {fileID: 5819030859545135277}
 --- !u!50 &5819030859190263711
 Rigidbody2D:
