@@ -10,6 +10,11 @@ public class Blackhole : MonoBehaviour
     public List<Rigidbody2D> objectRb;
     LayerMask layerMask;
     public Collider2D[] objects;
+
+    public GameObject camera;
+    public CameraScript cameraScript;
+
+    #region MonoBehaviour callbacks
     public void Start()
     {
         InvokeRepeating("AddForceToEverything", 0, 0.5f);
@@ -19,7 +24,9 @@ public class Blackhole : MonoBehaviour
     {
         
     }
+    #endregion
 
+    #region Methods
     void AddForceToEverything()
     {
         objects = Physics2D.OverlapCircleAll(transform.position, blackHoleRadius, layerMask);
@@ -39,4 +46,19 @@ public class Blackhole : MonoBehaviour
 
 
     }
+<<<<<<< Updated upstream
+=======
+
+    #endregion
+    #region Collision Detection
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            cameraScript.SetDead();
+        }
+        Destroy(collision.gameObject);
+    }
+    #endregion
+>>>>>>> Stashed changes
 }
