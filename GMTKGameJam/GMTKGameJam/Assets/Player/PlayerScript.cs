@@ -18,6 +18,7 @@ namespace Player
             gunAnimators[0] = leftPivot.GetComponent<Animator>();
             gunAnimators[1] = rightPivot.GetComponent<Animator>();
             gunAnimators[2] = downPivot.GetComponent<Animator>();
+            anim = graphics.GetComponent<Animations>();
 
         }
         void Update()
@@ -35,10 +36,12 @@ namespace Player
         public PlayerData data;
         Rigidbody2D rb;
         bool canShoot;
+        bool canGrapple = true;
         GameObject leftPivot;
         GameObject rightPivot;
         GameObject downPivot;
         Animator[] gunAnimators = new Animator[3];
+        public GameObject grapplePrefab;
 
 
         #endregion
@@ -48,10 +51,12 @@ namespace Player
         public float bulletSpeed => data.bulletSpeed;
         public float shootCooldown => data.shootCooldown;
         public float speedCap => data.speedCap;
+        public float grappleSpeed => data.grappleSpeed;
+        public float grappleDistance => data.grappleDistance;
         #endregion
 
         #region Methods
-    void HandleInput()
+        void HandleInput()
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
@@ -67,8 +72,25 @@ namespace Player
         #region GrappleHook 
         void GrappleHook()
         {
+            if (canGrapple)
+            {
+                Vector2 dir = transform.GetMouseDirection();
+                GameObject _grapplePrefab = Instantiate(grapplePrefab, transform.position, Quaternion.identity);
+                _grapplePrefab.GetComponent<Rigidbody2D>().velocity = dir * grappleSpeed;
+                _grapplePrefab.GetComponent<GrappleHook>().player = this.gameObject;
+                StartCoroutine(GrappleCooldown());
+                Destroy(_grapplePrefab, grappleDistance);
+            }
+
 
         }
+        IEnumerator GrappleCooldown()
+        {
+            canGrapple = false;
+            yield return new WaitForSeconds(shootCooldown);
+            canGrapple = true;
+        }
+        
         #endregion
 
         #region Shooting
@@ -117,9 +139,46 @@ namespace Player
 
         #endregion
 
+        public float StunDuration;
+        public float StunIncrease;
+        public GameObject graphics;
+        public Animations anim;
         #region CollisionDetection
-        
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("EnemyBullet"))
+            {
+                if (!anim.isStunned)
+                {
+                    Stun();
+                }
+                
 
+            }
+        }
+        public void Stun()
+        {
+            StartCoroutine(Stunned());
+        }
+        IEnumerator Stunned()
+        {
+           
+            anim.isStunned = true;
+            canShoot = false;
+            for (float i = 0; i < StunDuration; i += StunIncrease*Time.deltaTime)
+            {
+                if (anim.angle > 180)
+                {
+                    anim.angle = -180;
+                }
+                canShoot = false;
+                anim.angle += StunIncrease * Time.deltaTime;
+                
+                yield return null;
+            }
+            canShoot = true;
+            anim.isStunned = false; 
+        }
         #endregion
 
     }

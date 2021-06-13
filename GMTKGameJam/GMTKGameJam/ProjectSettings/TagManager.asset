@@ -8,6 +8,9 @@ TagManager:
   - ForwardGun
   - LeftGun
   - RightGun
+  - Objects
+  - EnemyBullet
+  - Enemies
   layers:
   - Default
   - TransparentFX

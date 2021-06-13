@@ -13,6 +13,7 @@ namespace Player
         GameObject leftPivot;
         GameObject rightPivot;
         GameObject downPivot;
+        public bool isStunned;
         private void Awake()
         {
             leftPivot = GameObject.FindGameObjectWithTag("LeftGun");
@@ -21,7 +22,10 @@ namespace Player
         }
         private void Update()
         {
-            angle = transform.GetMouseAngle();
+            if (!isStunned)
+            {
+                Animation();
+            }
             if (angle > 135) { checkAngle = -(360 - angle); }
             else if (angle < -135) { checkAngle = (360 - angle); }
             else { checkAngle = -1111; }
@@ -47,13 +51,18 @@ namespace Player
                 leftPivot.SetActive(false);
             }
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerUp"))
-                {
+            {
                 rightPivot.SetActive(false);
                 leftPivot.SetActive(false);
                 downPivot.SetActive(false);
             }
 
-
+        }
+        public void Animation()
+        {
+            angle = transform.GetMouseAngle();
+            
+           
         }
     }
 }

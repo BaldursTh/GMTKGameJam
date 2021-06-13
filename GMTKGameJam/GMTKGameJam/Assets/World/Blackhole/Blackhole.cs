@@ -6,6 +6,8 @@ using UnityEngine;
 public class Blackhole : MonoBehaviour
 {
     public float blackHoleRadius;
+    public float blackHoleRadiusGrowth;
+
     public float suctionForce;
     public List<Rigidbody2D> objectRb;
     LayerMask layerMask;
@@ -17,7 +19,7 @@ public class Blackhole : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        
+        blackHoleRadius += blackHoleRadiusGrowth;
     }
 
     void AddForceToEverything()
@@ -38,5 +40,10 @@ public class Blackhole : MonoBehaviour
         
 
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        Destroy(collision.gameObject);
     }
 }

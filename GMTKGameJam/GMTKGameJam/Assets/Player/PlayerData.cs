@@ -12,6 +12,8 @@ namespace Player
         public float bulletDamage;
         public float shootCooldown;
         public float speedCap;
+        public float grappleSpeed;
+        public float grappleDistance;
 
     }
 }
